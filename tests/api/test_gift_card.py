@@ -2,6 +2,7 @@ from datetime import date
 
 import graphene
 
+from saleor.graphql.core.utils.error_codes import AccountErrorCode, CheckoutErrorCode
 from tests.api.utils import get_graphql_content
 
 from .utils import assert_no_permission
@@ -171,6 +172,7 @@ mutation giftCardCreate(
             errors {
                 field
                 message
+                code
             }
             giftCard {
                 displayCode
@@ -273,6 +275,7 @@ def test_create_gift_card_with_existing_voucher_code(
     errors = content["data"]["giftCardCreate"]["errors"]
     assert len(errors) == 1
     assert errors[0]["field"] == "promoCode"
+    assert errors[0]["code"] == CheckoutErrorCode.PROMO_CODE_ALREADY_EXISTS.name
 
 
 def test_create_gift_card_with_existing_gift_card_code(
@@ -288,6 +291,7 @@ def test_create_gift_card_with_existing_gift_card_code(
     errors = content["data"]["giftCardCreate"]["errors"]
     assert len(errors) == 1
     assert errors[0]["field"] == "promoCode"
+    assert errors[0]["code"] == CheckoutErrorCode.PROMO_CODE_ALREADY_EXISTS.name
 
 
 def test_create_gift_card_without_user(staff_api_client, permission_manage_gift_card):
@@ -335,6 +339,7 @@ def test_create_gift_card_with_incorrect_user_email(
     assert len(errors) == 1
     assert errors[0]["field"] == "email"
     assert errors[0]["message"] == "Customer with this email doesn't exist."
+    assert errors[0]["code"] == AccountErrorCode.USER_DOES_NOT_EXIST.name
 
 
 def test_create_gift_card_without_premissions(staff_api_client):
