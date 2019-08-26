@@ -693,7 +693,7 @@ class ProductTypeReorderAttributes(BaseMutation):
                 {
                     "product_type_id": ValidationError(
                         (f"Couldn't resolve to a product type: {product_type_id}"),
-                        code=CommonErrorCode.DOES_NOT_EXIST,
+                        code=CommonErrorCode.OBJECT_DOES_NOT_EXIST,
                     )
                 }
             )
@@ -714,7 +714,7 @@ class ProductTypeReorderAttributes(BaseMutation):
                     {
                         "moves": ValidationError(
                             f"Couldn't resolve to an attribute: {move_info.id}",
-                            code=CommonErrorCode.DOES_NOT_EXIST,
+                            code=CommonErrorCode.OBJECT_DOES_NOT_EXIST,
                         )
                     }
                 )
@@ -757,7 +757,7 @@ class AttributeReorderValues(BaseMutation):
                 {
                     "attribute_id": ValidationError(
                         f"Couldn't resolve to an attribute: {attribute_id}",
-                        code=CommonErrorCode.DOES_NOT_EXIST,
+                        code=CommonErrorCode.OBJECT_DOES_NOT_EXIST,
                     )
                 }
             )
@@ -778,7 +778,7 @@ class AttributeReorderValues(BaseMutation):
                     {
                         "moves": ValidationError(
                             f"Couldn't resolve to an attribute value: {move_info.id}",
-                            code=CommonErrorCode.DOES_NOT_EXIST,
+                            code=CommonErrorCode.OBJECT_DOES_NOT_EXIST,
                         )
                     }
                 )
