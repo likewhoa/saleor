@@ -270,6 +270,7 @@ INSTALLED_APPS = [
     "impersonate",
     "phonenumber_field",
     "captcha",
+    "fontawesome_5",
 ]
 
 
