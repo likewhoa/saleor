@@ -2,5 +2,18 @@
   flex-flow: row wrap;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: center;
+  background: $light-gray;
+  margin-top: 2%;
+}
+.card { 
+  border: unset !important;
+  background-color: unset;
+  margin: 1rem;
+  .card-title {
+    text-transform: uppercase;
+    font-size: 0.777rem;
+    color: $darken-gray;
+  }
 }
